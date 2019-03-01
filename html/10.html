@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+	//对象的扩展属性
+	//1.Object.is
+//	let a = {};
+//	let b = a;
+//	console.log( Object.is( a,b ) );
+//	console.log( Object.is( {},{} ) );
+//	console.log( Object.is( NaN,NaN ) );//true
+//	console.log( NaN === NaN);//false
+//	console.log( Object.is( +0,-0 ) );//false
+//	console.log( +0 === -0 );//true
+//	console.log( 0 === -0 );
+//	console.log( 0 === +0 );
+	//模拟is
+//	function is( x,y ){
+//		if( x === y ){
+//			//return x !== 0;
+//			//1.x非0返回true
+//			//2.x若是0，则将结果转化为∞，±∞来比较
+//			return x !== 0 || 1/x === 1/y;
+//		}
+//		return x!==x && y!==y;
+//	}
+//	console.log( is( NaN,NaN ) );
+//	console.log( 1/-0 );//-∞
+//	console.log( 1/+0 );//+∞
+//	console.log( 1/0 );//∞
+	//is的模拟实现：属性特性value不仅可以是值或表达，也可以是函数
+//	Object.defineProperty( Object,'is',{
+//		writable:true,
+//		enumerable:false,
+//		configurable:true,
+//		value:function( x,y ){//value可以是函数
+//			if( x === y ){
+//				return x !== 0 || 1/x === 1/y;
+//			}
+//			return x!==x && y!==y;
+//		}
+//	} );
+//	console.log( Object.is(+0,-0) );
+//	console.log( Object.is(NaN,NaN) );
+	//对象合并
+//	const target = { a: 1 };
+//	const source1 = { b: 2 };
+//	const source2 = { c: 3 };
+//	Object.assign(target, source1, source2);
+//	console.log( target );
+//	const v1 = 'abc';
+//	const v2 = true;
+//	const v3 = 10;
+//	const obj = Object.assign({}, v1, v2, v3);
+//	console.log(obj); //只有字符串合入目标对象
+//	console.log( Object('abc') );
+	//defineProperty修改对象属性，并返回这个对象
+//	console.log( Object.defineProperty({}, 'invisible', {
+//  enumerable: true,
+//  value: 'hello'
+//}) );
+	//assign用于克隆对象
+//	let source = {x:1,y:2};
+//	function clone( obj ){
+//		return Object.assign( {},obj );
+//	}
+//	let copy = clone( source );
+//	console.log( copy );
+	//合并多个对象
+	//...展开符用于接受参数并转化为数组
+//	const merge = (target,...sources) => {
+//		console.log( sources );
+//		Object.assign(target, ...sources );
+//	};
+//	console.log( merge({},{a:1},{b:2},{c:3}) );
+	//不建议使用
+//	let obj = {
+//		sayhi(){
+//			console.log( 'hi, '+super.name );
+//		}
+//	};
+//	obj.__proto__ = {
+//		name:'aa'
+//	};
+//	//console.log( obj.sayhi() );
+//	console.log( obj.__proto__ );
+	//让keys,values,entries等方法来接收Object内的方法赋值
+//	let {keys, values, entries} = Object;
+//	let obj = { a: 1, b: 2, c: 3 };
+//	for( let key of keys( obj ) ){
+//		console.log( key );
+//	}
+//	for( let value of values( obj ) ){
+//		console.log( value );
+//	}
+//	for( let entry of entries( obj ) ){
+//		console.log( entry );
+//	}
+	//enumerable默认是false,必须显示设置为true才能被key/value所枚举
+//	const obj = Object.create({}, {p: {value: 42,enumerable:true}});
+//	console.log( Object.keys(obj) );
+//	console.log( Object.values(obj) );
+	//Object.values(obj) // []
+	const map = new Map([ ['foo', 'bar'], ['baz', 42] ]);
+	//map对象内含键值对二维数组和size属性
+	let o = Object.fromEntries( map );
+	console.log( map.size );
+	console.log( o );
+	
+	</script>
+</html>

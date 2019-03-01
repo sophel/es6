@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		//类的继承
+class Point {
+	constructor(x,y){
+		this.x = x;
+		this.y = y;
+	}
+	toString(){
+		return "x:"+this.x+",y:"+this.y;
+	}
+}
+class ColorPoint extends Point{
+	constructor(x,y,color){
+		this.num = 1;
+		//must call super constructor before using |this| in ColorPoint class constructor
+		super( x,y );//调用父类构造方法
+		this.color = color;
+	}
+	toString(){
+		return super.toString()+",color:"+this.color;
+	}
+}
+
+let cp = new ColorPoint( 0,0,'#ffffff' );
+console.log( cp.toString() );
+
+	</script>
+</html>

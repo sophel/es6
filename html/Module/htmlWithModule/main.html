@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<!--类似与script标签的defer属性，页面渲染完才执行-->
+	<!--内嵌模块-->
+	<script type="module">
+		//引入外部模块
+		import * as consts from './consts.js';
+		//调用模块接口
+		console.log( consts.A );
+		console.log( consts.B );
+		console.log( consts.C );
+		console.log( consts._val);
+		//在ES6模块下，this是undefined
+		console.log( this === undefined );
+		//ES6里的export和import操作的是引用，模块内部的变化会影响到外部
+		setTimeout(function(){
+			console.log( consts._val);
+		},1500);
+	</script>
+
+</html>

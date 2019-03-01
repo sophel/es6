@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		
+		//1.变量写法
+//		let foo = '123';
+//		//变量名为属性名，变量值为属性值
+//		let obj = { foo };
+//		console.log( obj );
+//			let x = 1;
+//			let y = 2;
+//			let obj = {x,y};//表示{x:x,y:y}
+//			console.log( obj );
+		//2.函数写法
+//			function createObj( x,y ){
+//				return { x,y };
+//			}
+//			let obj = createObj( 1,2 );
+//			console.log( obj );
+	//3.方法简写
+//	let obj = {
+//		number:10,
+//		printNum(){
+//			console.log( this.number );
+//		}
+//	};
+//	obj.printNum();
+//	let birth = '1989/01/04';
+//	const person = {
+//		name: '张三',
+//		birth,
+//		hello(){
+//			console.log( `我的名字是${this.name},我的生日:${this.birth}` );
+//		}
+//	};
+//	person.hello();
+	//4.属性的存取器
+//	const car = {
+//		_wheels:4,
+//		get wheels(){
+//			return this._wheels;
+//		},
+//		set wheels( value ){
+//			if( value < 4 ){
+//				throw new Error( '数值太小了' );
+//			}
+//			this._wheels = value;
+//		}
+//	};
+//	car.wheels = 6;
+//	console.log( car._wheels );
+	//5.属性表达式
+//	let obj = {};
+//	obj['abc'] = 1;
+//	obj['a'+'bc'] = 1;
+//	console.log( obj.abc );
+//	let add = 'address';
+//	var obj2 = {
+//		'acb':'hi',
+//		['a'+'bc']:'world',//es6新增
+//		name:'msl',
+//		age:29,
+//		[add]:'西安',
+//		['loved people']:'mum&dad',
+//		['say'+' something'](){
+//			console.log( 'hi, nice to meet u' );
+//		}
+//	};
+//	console.log( obj2['loved people'] );
+//	obj2['say'+' something']();
+//	let dosomething = function(){
+//		console.log( 'hi '+this.name+',let us do something to change the world!' );
+//	}
+//	let person = {
+//		name:'msl'
+//	};
+//	console.log( dosomething.bind( person ).name );//bound(范围)+ name
+//	console.log( (new Function()).name );//anonymous
+	//6.对象的遍历
+//	let name = 'msl';
+//	let age = '20';
+//	let Obj = { name,age };
+//	console.log( Object.keys( Obj ) );//自身的，不含非枚举的
+//	console.log( Object.getOwnPropertyNames(Obj) );//自身的，包括非枚举的
+	//遍历顺序
+//	let obj = {
+//		'aa':'aa',
+//		'1':2,
+//		0:1,
+//	};
+//	for( prop in obj ){//先数值键，后字符串键
+//		console.log( prop );//0,1,aa
+//	}
+	//super关键字
+//	const proto = {
+//		foo:'hello'
+//	};
+//	const obj = {
+//		foo:'world',
+//		find(){
+//			return super.foo;//只能用在对象方法里
+//		},
+//		//superfoo:super.foo//×
+//	};
+//	Object.setPrototypeOf( obj,proto );
+//	console.log( obj.find() );
+	//扩展运算符
+//	function f(...a){
+//		console.log( a );
+//		console.log( a.length );
+//	}
+	//扩展运算符的解构赋值
+//	let{x,...y} = {x:1,a:2,b:3,c:4};
+//	console.log( x );
+//	console.log( y );
+//	let {...obj} = {name:'aa',age:10};
+//	let obj2 = {name:'aa',age:10};
+//	console.log( obj );
+//	console.log( obj2 );
+	//解构赋值无法继承自原型的属性
+//	let proto = {
+//		foo:'proto_foo'
+//	};
+//	let obj = {
+//		name:'msl'
+//	};
+//	Object.setPrototypeOf( obj,proto );
+//	//可以console的是对象的自身属性，不包括继承属性
+//	//console.log( obj.foo );
+//	let {...test} = obj;
+//	console.log( test );
+	//create里面的是原型对象
+//	const o = Object.create({ x: 1, y: 2});
+//	o.z = 3;
+//	let { x, ...newObj } = o;//解构只赋值自由属性
+//	console.log( newObj );
+//	let{y,z} = newObj;
+	//对象解构赋值、拷贝
+//	let z = { a: 3, b: 4 };
+//	let{...n} = z;
+//	n.a = '5';
+//	console.log( n );
+//	console.log( z );
+//	console.log( '-----------------------------' );
+//	//对象解构赋值（拷贝）与直接转移引用有本质区别，一个是新对象，一个是引用
+//	let n1 = z;
+//	n1.a = '6';
+//	console.log( n1 );
+//	console.log( z );
+	//数组解构为对象
+//	let o = {...['a','b','c']};
+//	console.log( o );
+//	let a = ['a','b','c'];
+//	let o = {...a};
+//	let {...o1} = a;
+//	let o2 = Object.assign({},a);
+//	console.log( o );
+//	console.log( o1 );
+//	console.log( o2 );
+	//覆盖
+//	let a = {x:1,y:2,z:3};
+//	//对象的解构属性会被后面的同名属性覆盖
+//	let o = {x:4,y:5,...a};
+//	console.log( o );
+	//	扩展运算符后跟表达式
+//	let x = 0;
+//	//跟三元运算符
+//	const obj = {...(x>1?{a:1}:{}),b:2};
+//	console.log( obj);
+	//跟方法
+	let a = {x:1,y:2};
+	let aWithXGetter = {
+	  ...a,
+	  ...{
+	  	//get参数会被立即执行
+	  	get x(){
+	  		//throw new Error('not throw yet');
+	  		console.log( 'get x' );
+	  	}
+	  }
+//	  get x() {
+//	    throw new Error('not throw yet');
+//	  }
+	};
+	console.log( aWithXGetter );
+
+		
+	
+	</script>
+</html>

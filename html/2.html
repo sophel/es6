@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li>line1</li>
+			<li>line2</li>
+			<li>line3</li>
+			<li>line4</li>
+			<li>line5</li>
+		</ul>
+	</body>
+	<script>
+//		function f1( x=1,y=()=>{x=10;} ){
+//			y();
+//			console.log( x );
+//			var x = 'abc';
+//		}
+//		f1();
+//		function f2( x=1,y=()=>{x=10;} ){
+//			y();
+//			console.log( x );//10
+//			//var x = 'abc';
+//		}
+//		f2();
+//		function f3( x,y=()=>{x=10;} ){
+//			y();
+//			console.log( x );//undefined
+//			var x = 'abc';
+//		}
+//		f3();
+//		function f4( x=10,y=()=>{x++;} ){
+//			y();
+//			console.log( x );//10
+//			y();
+//			console.log( x );//10
+//			var x = 'abc';
+//		}
+//		f4();
+//function throwIfMissing() {
+//throw new Error('Missing parameter');
+//}
+////不传值的情况下，使用默认值
+//function foo(mustBeProvided = throwIfMissing()) {
+//return mustBeProvided;
+//}
+//
+//foo(123)
+//rest参数
+//	function add(...values){
+//		var sum = 0;
+//		values.forEach( val=>sum += val );
+//		console.log( sum );
+//	}
+//	add(1,2,3,4,5);
+	//var a = [5,4,3,2,1];
+	//rest写法将传入的参数组装在一个数组里
+//	const sortNumbers = (...numbers)=>numbers.sort();
+//	console.log( sortNumbers( 5,4,3,2,1 ) );
+//	//arguments是类数组，所以不能直接调用数组方法，要通过call间接调用
+//	//箭头函数没有arguments?
+//	
+//	const sortNumbers2 = function(){
+//		console.log( arguments );
+//		//slice截取到最后一个索引是数字的属性
+//		console.log( Array.prototype.slice.call(arguments) );
+//		return Array.prototype.slice.call(arguments).sort();
+//	}
+//	console.log( sortNumbers2( 5,4,3,2,1 ) );
+
+//	function f1() {
+//		console.log( arguments.length );
+//	}
+//	f1(1,2,3);
+//	//箭头函数内部不支持arguments
+//	var f2 = ()=>{ console.log( arguments.length ); }
+//	f2(1,2,3);
+//	function foo() {
+//		//foo运行时才在定义
+//		//箭头函数的this指向在定义时生效
+//		//箭头函数里的this可以访问当前对象作用域，和闭包有很大区别
+//	  setTimeout(() => {
+//	    console.log('id:', this.id);
+//	  }, 100);
+//	}
+//	
+//	var id = 20;
+//	foo.call( {id:40} );
+//	foo.call( {id:60} );
+//	var arr = [1,2,3];
+//	arr.push( ...[4,5,6] );//将数组转化为参数序列
+//	console.log( arr );
+	
+//	function add(x,y){
+//		return x+y;
+//	}
+//	console.log( add(...[1,2]) );
+//	console.log( Math.max(...[5,4,3]) );
+//	var a1 = [1,2,3,4,5];
+//	var a2 = a1.slice( 0 );
+//	console.log( a1 );
+//	console.log( a2 );
+	//数组的克隆
+//	var a = [1,2,3];
+//	var b = [...a];
+//	//var [...b] = a;
+//	console.log( a );
+//	console.log( b );
+//	const a1 = [{ foo: 1 }];
+//	const a2 = [{ bar: 2 }];
+//	const a3 = [...a1,...a2];//浅拷贝，将对象的引用拷贝过去了，多个引用指向同一对象
+//	console.log( a3[0].foo );
+//	a3[0].foo = 100;
+//	console.log( a1[0].foo );
+		//将实现了Iterator接口的类数组转化为真正的数组
+//		var lis = document.querySelectorAll( 'li' );
+//		var texts = Array.prototype.map.call(lis,li=>li.textContent);
+//		console.log( texts );
+//		//from后直接跟map参数
+//		var text2 = Array.from(lis,li=>li.textContent);
+//		console.log( text2 );
+//	console.log( Array() );
+//	console.log( Array(3) );
+//	console.log( Array(3,8,11) );
+//	var arr = Array.of(3);
+//	console.log( arr );
+//	let n =	[1,2,-5,-6,4].find( v=>v<0 );
+//	console.log( n );
+//	var a = ['hello','world'];
+//	var map = [];
+//	for( let entry of a.entries() ){
+//		console.log( entry );
+//		map.push( entry );
+//	}
+	console.log( [undefined].indexOf(undefined));//0
+	console.log( [NaN].indexOf(NaN));//-1 对NaN的误判
+	console.log( [NaN].includes(NaN) );
+
+	</script>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		//Symbol是js中的第七种数据类型
+		//foo,bar是对symbol的描述
+//		let s1 = Symbol('foo');
+//		console.log(s1)   // Symbol(foo)
+//		
+//		const obj = {
+//		  toString1() {
+//		    return 'abc';
+//		  }
+//		};
+//	const sym = Symbol(obj);
+//	console.log(sym);   // Symbol(abc)
+	//let s1 = Symbol('xiaozhang');
+	//let s2 = 'hi,'+s1;//cannot convert symbol to string
+	//console.log( s2 );
+//	console.log( s1.toString() );
+//	console.log( String( s1 ) );
+	//用symbol定义对象属性
+//	let s1 = Symbol( 'name' );
+//	let s2 = Symbol( 'name' );
+//	let o = {};
+//	o[s1] = 'msl';//用方括号引用symbol标识符
+//	o[s2] = 'hly';
+//	console.log( o );
+//	console.log( o[s1] );
+//	console.log( o[s2] );
+//	let s = Symbol();
+//	let s1 = Symbol();
+//	let o ={
+//		[s]:function(){ console.log('hi,nice to meet u.') },
+//		[s1]:'str'
+//	};
+//	o[s]();
+//	console.log( o[s1] );
+//	const log = {};
+//	log.levels = {
+//	  DEBUG: Symbol('debug'),
+//	  INFO: Symbol('info'),
+//	  WARN: Symbol('warn')
+//	};
+//	console.log(log.levels.DEBUG, 'debug message');
+//	console.log(log.levels.INFO, 'info message');
+//Symbol类型变量的用途
+	//1.用于消除魔术字符串（强耦合字符串）
+//	const shapeType = {
+//	  triangle: Symbol(),//triangle的值是什么不重要，只要和其他形状的值不一样即可
+//	  square:Symbol()
+//	};
+//	function getArea(shape,options) {
+//	  let area = 0;
+//	  switch (shape) {
+//	    case shapeType.triangle:
+//	      area = .5 * options.width * options.height;
+//	      break;
+//	    case shapeType.square:
+//	    	area = options.sidelen*options.sidelen;
+//	    	break;
+//	  }
+//	  return area;
+//	}
+//	let area = getArea(shapeType.triangle, { width: 100, height: 100 });
+//	let a2 = getArea( shapeType.square,{ sidelen:10 } );
+//	console.log( area );
+//	console.log( a2 );
+	//属性的遍历
+	//不可枚举
+//	let name = Symbol();
+//	let age = Symbol();
+//	let o = {
+//		[name]:'msl',
+//		[age]:29,
+//		'favours':'singing,reading,learning'
+//	};
+//	for( let prop in o ){
+//		console.log( prop );
+//	}
+//	const symbolprops = Object.getOwnPropertySymbols( o );
+//	console.log( symbolprops );
+	//Reflect.ownKeys返回所以类型键名
+//	let obj = {
+//	  [Symbol('my_key')]: 1,
+//	  enum: 2,
+//	  nonEnum: 3
+//	};
+//	let keys = Reflect.ownKeys( obj );
+//	console.log( keys );
+//	let size = Symbol('size');
+//	class Collection {
+//	  constructor() {
+//	    this[size] = 0;
+//	  }
+//	  add(item) {
+//	  	//用size属性值作为新的键，来存储case_item的值
+//	    this[this[size]] = item;
+//	    this[size]++;
+//	  }
+//	  static sizeOf(instance) {
+//	    return instance[size];
+//	  }
+//	}
+//	let x = new Collection();
+//	x.add('foo');
+//	x.add('zoo');
+//	console.log( Reflect.ownKeys(x) );
+//	console.log( x[0] );//分别获取
+//	console.log( x[1] );
+//	let s1 = Symbol( 'foo' );//无登记机制
+//	let s3 = Symbol.for( 'foo' );
+//	console.log( s1 === s3 );
+//	let s1 = Symbol( 'foo' );//登记在global scope供搜索
+//	let s2 = Symbol.for( 'foo' );
+//	console.log( s1===s2 );
+	//keyfor返回一个已登记的值
+//	let s1 = Symbol.for("foo");
+//	console.log(Symbol.keyFor(s1));// "foo"
+//	let s1 = Symbol.for( 'foo' );
+//	let s2 = Symbol.for( 'foo' );
+//	console.log( s1===s2 );
+	let s1 = Symbol.for('foo');
+	let obj = {};
+	obj[s1] = '123';
+	obj[Symbol.for('foo')] = '456';
+	console.log( obj );
+	
+	</script>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+	//Promise 异步操作
+	//setTimeout后续的参数是要传进回调函数里面的
+	//Promise接受一个function做参数，function接收一个resolve和reject处理函数
+//	function timeout(ms){
+//		return new Promise((resolve,reject) =>{
+//			setTimeout(resolve,ms,'done');//指定何时去调这个resolve函数
+//		});
+//	}
+//	//回调方法由then来定义和绑定
+//	timeout(3000).then( x => console.log(x) ); //定义resolve
+	//Promise一旦定义立即执行
+//	let flag = false;
+//	//promise中使用由then定义的resolve和reject方法
+//	let promise = new Promise(function(resolve,reject){
+//			console.log( 'promise' );
+//			//resolve或reject在所有同步任务处理完成以后才处理
+//			if( flag ){
+//				resolve( 'success' );
+//			}
+//			else{
+//				reject( 'failed' );
+//			}
+//	});
+//	promise.then(function( msg ){
+//		console.log( "调用成功，状态值："+msg );
+//	},function( error ){
+//		console.log( "调用失败，状态值："+error );
+//	});
+//	console.log( 'hi' );
+//	promise处理图像异步加载
+//	function loadImageAsync( url ){
+//		return new Promise( function(resolve,reject){
+//			//new Image生成的就是<img>的dom对象，可以直接append在其他HTMLDOM里
+//			const image = new Image();
+//			//事件处理函数默认是接收event参数
+//			image.onload = () => resolve(image);
+//			image.onerror = () => reject('url:"'+url+'" not found');
+//			image.src = url;
+//		} );
+//	}
+//	let promise = loadImageAsync( 'http://img1.qunarzz.com/sight/source/1507/fe/679926851c309a.jpg_r_640x214_114816de.jpg' );
+//	promise.then(function( img ){
+//		console.log( img );
+//		//在图片加载成功了之后再将dom追加进去
+//		document.body.appendChild( img );
+//	},function( errMsg ){
+//		console.log( errMsg );
+//	});
+	//Promise处理ajax
+//	function getJSON( url ){
+//		return new Promise( function(resolve,reject){
+//			const handler = function() {
+//    if (this.readyState !== 4) {
+//      return;
+//    }
+//    if (this.status === 0) {//本地响应返回的status也是0
+//      console.log( this );
+//      resolve(this.response);
+//    } else {
+//      reject(new Error(this.statusText));
+//    }
+//  };
+//  const client = new XMLHttpRequest();
+//  client.open("GET", url);
+//  client.onreadystatechange = handler;
+//  client.responseType = "json";
+//  client.setRequestHeader("Accept", "application/json");
+//  client.send();
+//		} );
+//	}
+//	getJSON( 'http://172.18.20.40/api/city.json' ).then(function( json ){
+//		 console.log('Contents: ' + json);
+//	},function( error ){
+//		console.log('出错了', error);
+//	});
+	//promise作为resolve的参数
+	const p1 = new Promise(function (resolve, reject) {
+	  //setTimeout(() => reject(new Error('fail')), 3000)
+	  setTimeout(() => resolve('success'), 3000)
+	})
+	
+	const p2 = new Promise(function (resolve, reject) {
+	  //但是p2的resolve方法将p1作为参数，那p2状态将变成p1的状态，且后续的回调也是在p1上进行
+	  setTimeout(() => resolve(p1), 1000)
+	})
+	
+	p2
+	  .then(result => console.log(result+'  test'))
+	  .catch(error => console.log(error))
+	</script>
+</html>

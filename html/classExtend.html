@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+    //类重新定义的、自己的属性/方法会在调用时覆盖掉原型里的属性和方法
+    //原型链里的方法依然存在，除非你改了原型
+    function Animal(type,name){
+      this.type = type;
+      this.name = name;
+    }
+    Animal.prototype = {
+      say(){
+        console.log( 'this is an anima' );
+      }
+    };
+    let cat = new Animal( 'cat','mimi' );
+    cat.say();
+    console.log( cat.say === Animal.prototype.say );
+    cat.say = function(){
+      console.log( 'miao-miao-miao' );
+    }
+    console.log( cat );
+    console.log( cat.say === Animal.prototype.say );
+	</script>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li>li node1</li>
+			<li>li node2</li>
+			<li>li node3</li>
+		</ul>
+	</body>
+	<script>
+ class sequence{
+  constructor( start,end ){
+    this.start = start;
+    this.end = end;
+	}
+	//Symbol.iterator方法属性，只要负责返回一个有next的遍历器对象即可，当然可以是this实例本身
+  [Symbol.iterator](){ return this; }
+  next() {
+    //改变了自身的start属性值
+    const value = this.start;
+    if( this.start<= this.end ){
+      this.start++;
+      return{ value:value,done:false };
+    }
+    return{ value:undefined,done:true };
+  }
+}
+const s = new sequence( 3,8 );
+// for( let v of s ){
+// 	console.log( v );
+// }
+//给类数组对象部署iterator接口，相当于给类数组调用数组方法一样
+// const list = document.querySelectorAll("li");
+// list[Symbol.iterator] = Array.prototype[Symbol.iterator];
+// const iter = list[Symbol.iterator]();
+// // console.log( list );
+// // for( let node of list ){
+// // 	console.log( node );
+// // }
+// console.log( iter.next() );
+//可以修改原生的遍历器以达到定制需求
+//给对象扩展属性方法时，this指向的是当前实例
+//可以修改原生的遍历器以达到定制需求
+const arr1 = ['aa','bb','cc'];
+console.log( arr1 );
+// console.log( arr1[ Symbol.iterator ] );
+// console.log( Array.prototype[ Symbol.iterator ] );
+console.log( arr1[ Symbol.iterator ] === Array.prototype[ Symbol.iterator ] );
+
+
+
+
+arr1[ Symbol.iterator ] = function(){
+  let index = 0;
+  let self = this;
+  return {
+    next:function(){
+      return  index<self.length?{value:index++,done:false}:{value:undefined,done:true};
+    }
+  };
+}
+// for( let v of arr1 ){
+//   console.log( v );
+// }
+// console.log([...arr1]);
+console.log( arr1 );
+console.log( arr1[ Symbol.iterator ] === Array.prototype[ Symbol.iterator ] );
+	</script>
+</html>

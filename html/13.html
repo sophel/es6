@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		//proxy:代理器:10:30打电话给娜娜
+//	var obj = new Proxy({}, {
+//	  get: function (target, key, receiver) {
+//	    console.log(`getting ${key}!`);
+//	    return Reflect.get(target, key, receiver);
+//	  },
+//	  set: function (target, key, value, receiver) {
+//	    console.log(`setting ${key}!`);
+//	    return Reflect.set(target, key, value, receiver);
+//	  }
+//	});
+//	obj.counter = 0;
+//	++obj.counter;
+	//重新定义了点运算符
+	//Proxy(target,handler)
+	//对象，拦截控制操作
+	var proxy = new Proxy({},{
+		get(target,prop){
+			if( prop !== "x" )
+				return 35;
+			else	
+				return target[prop];
+		},
+		set(target,prop,val){
+			target[prop] = val+val;
+		}
+	});
+	proxy.x = 10;
+	console.log( proxy.x );
+	console.log( proxy.y );
+	console.log( proxy.z );
+	//proxy实例本质上扔是对象，只是对象的getter/setter被handler定义了而已
+	
+
+	</script>
+</html>

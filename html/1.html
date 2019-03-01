@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+//	let arr = [1,2,3,4];
+//	let arr1 = arr.map( v => v*v );
+//	console.log( arr1 );
+//	function fn() {
+//	  return "Hello World";
+//	}
+//	document.body.innerHTML = `
+//<ul>
+//<li>first</li>
+//<li>second</li>
+//</ul>
+//`
+//${}内部可以是任意的js表达式
+//	document.body.innerHTML = `${fn()}`;
+//模板字符串的嵌套
+//	let addrs = ['Xi\'an','XianYang','ChengDu','ShangHai'];	
+//	let tmpl = arrs => `
+//		<table>
+//			${ arrs.map( arr => `<tr>
+//					<td>${arr}</td>
+//				</tr>` ).join('') }
+//		</table>
+//	`;
+//	document.body.innerHTML = tmpl(addrs);
+//引用模板字符串
+//eval(str):返回str的计算值（如果有的话）
+//let n = 10;
+//let s = "10.001";
+//console.log( parseInt( s ) );
+////模块化
+//console.log( Number.parseInt( s ) );
+//console.log( Number.parseFloat( s ) );
+//console.log( Number.isInteger(10.00) );
+//console.log( Number.isInteger(NaN) );
+//console.log( Math.pow(2,53) );
+//console.log( Math.pow(2,53)+1 );
+//console.log( Math.pow(2,53) === Math.pow(2,53)+1 );
+//let f = x => {
+//	return typeof x === "number" &&
+//	Math.round(x) === x
+//}
+//console.log( f(1) );
+//function f(y='world'){
+//	//y = y||10;
+//	console.log( "hello " + y );
+//}
+//f( '' );
+//1.解构赋值
+//2.给了默认值{},就不会因undefined求prop报unreference错误
+//function f({x,y=5}={}){
+//	console.log( "x:"+x+",y:"+y );
+//}
+//f();
+//1.以对象解构参数的，要么给对象默认{}值，要么在调用时穿{},否则解构失败
+//	function prtStuInfo(id,{name='',age=3,sex='male'}={}){
+//		console.log( "Student info:" );
+//		console.log( "id:"+id );
+//		console.log( "name:"+name );
+//		console.log( "age:"+age );
+//		console.log( "sex:"+sex );
+//	}
+//	prtStuInfo( 1 );
+//	//1.传空：x=0,y=0
+//	//2.传{},x=0,y=0
+//	//3.传{x:_x},x=_x,y=0;
+//	//4.传x,y,类似
+//	function m1({x = 0, y = 0} = {}) {
+//	  console.log( [x, y] );
+//	}
+//	m1();
+//	m1( {} );
+//	m1( {x:1} );
+//	m1( {y:2} );
+//	//1.传空，x=0,y=0
+//	//2.传{},x=undefined,y=undefined
+//	//3.传{x:_x},x=_x,y=undefined
+//	//4.其余类似3
+//	function m2({x, y} = { x: 0, y: 0 }) {
+//		console.log( [x, y] );
+//	}
+//	m2();
+//	m2( {} );
+//	m2( {x:1} );
+//	m2( {y:2} );
+//	let f = function(x,y=5){
+//		//arguments.length是实际传入的参数
+//		//默认值不是尾参数，则后面无默认值的也不算在length以内了
+//		console.log( arguments.length );
+//	}
+//	//function的length是预期传入的参数
+//	console.log( f.length );
+//	f(1,2,3);
+//	let f = (x,y)=>{
+//		let z = x+y;
+//		return z;
+//	}
+//var x = 1;
+//function foo(x, y = function() { x = 2; }) {//此处修改的是函数声明作用域内的x,并不是其他的
+//var x = 3;
+//y();
+//console.log(x);
+//}
+//
+//foo() // 3
+//x // 1
+//函数声明里边必须有变量来接收值
+//function f( x,y=(()=>5)() ){
+//	console.log( y );
+//}
+//f();
+//function bubble( x,f=()=>x=1 ){
+//	f();
+//	console.log( x );
+//}
+//bubble();
+//形参与变量同名的情况
+//	function f(){//函数声明
+//		console.log( x );
+//		function x(){}
+//		console.log( x );
+//	}
+//	f();
+//	
+//	function f2(){//函数表达式
+//		console.log( x );
+//		var x = function(){};
+//		console.log( x );
+//	}
+//	f2();
+	var x = 10;
+	function f( x,y=()=>{x=20;console.log(x);} ){
+		y();
+		console.log( x );
+		var x = 30;
+		console.log( x );
+	}
+	f();
+	console.log( x );
+//	var x = 10;
+//	function f1( x,y = ()=>{x=20} ){
+//		y();
+//		console.log( x );//undefined
+//		var x = 'abc';
+//		console.log( x );//abc
+//	}
+//	f1();
+//	function f2( x = 20){
+//		console.log( x );//20
+//		var x = 'abc';
+//		console.log( x );//abc
+//	}
+//	f2();
+	</script>
+</html>
